@@ -3,7 +3,8 @@ import { View, StyleSheet, Button } from 'react-native';
 
 import useStatusBar from '../hooks/useStatusBar';
 import { logout } from '../components/Firebase/firebase';
-export default function HomeScreen() {
+
+export default function HomeScreen({navigation}) {
   useStatusBar('dark-content');
   
   async function handleSignOut() {
@@ -16,6 +17,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Button title="Sign Out" onPress={handleSignOut} />
+      <Button title="업로드페이지로" onPress={()=>{navigation.navigate('Upload')}}/>
     </View>
   );
 }

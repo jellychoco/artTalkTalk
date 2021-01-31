@@ -2,13 +2,23 @@ import { LogBox } from 'react-native';
 import * as firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/firestore'
-import firebaseConfig from './firebaseConfig';
+import {apikey,authDomain,projectId,storageBucket,messagingSenderId,appId,measurementId} from '@env'
+const config =  {
+    apiKey: apikey,
+    authDomain: authDomain,
+    projectId: projectId,
+    storageBucket: storageBucket,
+    messagingSenderId: messagingSenderId,
+    appId: appId,
+    measurementId: measurementId
+};
+
 LogBox.ignoreLogs(['Setting a timer']);
 
 // Initialize Firebase App
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(config);
 }
 
 export const auth = firebase.auth();
