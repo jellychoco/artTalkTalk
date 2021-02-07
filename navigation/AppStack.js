@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 export default function AppStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Upload" component={UploadScreen} />
     </Stack.Navigator>
   );

@@ -63,11 +63,11 @@ export default function LoginScreen({ navigation }) {
   }
 
   return (
-    <SafeView style={styles.container}>
+    <View style={styles.container}>
       <ImageBackground source={Login} style={{ width: width, height: height }}>
-        {/* <View style={styles.logoContainer} >
+        <View style={styles.logoContainer} >
         <Image source={require('../assets/flame.png')} style={styles.logo} />
-      </View> */}
+      </View>
         <Form
           initialValues={{ email: "", password: "" }}
           // validationSchema={validationSchema}
@@ -109,7 +109,7 @@ export default function LoginScreen({ navigation }) {
           </TouchableOpacity>
         </View>
       </ImageBackground>
-    </SafeView>
+    </View>
   )
 }
 

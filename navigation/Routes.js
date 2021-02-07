@@ -34,7 +34,7 @@ export default function Routes() {
   }
 
   return (
-    <NavigationContainer theme={navigationTheme}>
+    <NavigationContainer options={{ headerShown: false }}  theme={navigationTheme}>
       {user ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );

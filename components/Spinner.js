@@ -8,10 +8,9 @@ var width = Dimensions.get('window').width;
 var height = Dimensions.get('window').height;
 export default function Spinner() {
   return (
-    <SafeView style={styles.container}>
-      <Image style={{width:width,height:height,top:20}} source={main} />
-      {/* <ActivityIndicator size="large" color={Colors.secondary} /> */}
-    </SafeView>
+    <View style={styles.container}>
+      <Image style={{width:width,height:height}} source={main} />
+    </View>
   );
 }
 
