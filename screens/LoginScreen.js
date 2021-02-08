@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import {
   StyleSheet,
   TouchableOpacity,
@@ -7,6 +7,8 @@ import {
   Image,
   ImageBackground,
   Dimensions,
+  Platform,
+  StatusBar
 } from "react-native"
 import * as Yup from "yup"
 import AppButton from "../components/AppButton"
@@ -38,7 +40,15 @@ export default function LoginScreen({ navigation }) {
   const [passwordVisibility, setPasswordVisibility] = useState(true)
   const [rightIcon, setRightIcon] = useState("eye")
   const [loginError, setLoginError] = useState("")
-
+  const [isIos,setIsIos] = useState("")
+  useEffect(()=>{
+if(Platform.OS === 'ios'){
+  setIsIos(true)
+} else {
+  setIsIos(false)
+}
+  },[])
+   
   function handlePasswordVisibility() {
     if (rightIcon === "eye") {
       setRightIcon("eye-off")
@@ -64,10 +74,10 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden={false}/>
       <ImageBackground source={Login} style={{ width: width, height: height }}>
-        <View style={styles.logoContainer} >
-        <Image source={require('../assets/flame.png')} style={styles.logo} />
-      </View>
+      <View style={{display:"flex",justifyContent:"center",alignItems:"center",width: width, height: height}}>
+      <View style={{width:width*0.6,paddingTop:isIos ? height*0.18 : height*0.21}}>
         <Form
           initialValues={{ email: "", password: "" }}
           // validationSchema={validationSchema}
@@ -75,8 +85,7 @@ export default function LoginScreen({ navigation }) {
         >
           <FormField
             name='email'
-            leftIcon='email'
-            placeholder='이메일을 입력하세요'
+            placeholder='이메일'
             autoCapitalize='none'
             keyboardType='email-address'
             textContentType='emailAddress'
@@ -84,30 +93,35 @@ export default function LoginScreen({ navigation }) {
           />
           <FormField
             name='password'
-            leftIcon='lock'
-            placeholder='비밀번호를 입력하세요'
+            placeholder='비밀번호'
             autoCapitalize='none'
             autoCorrect={false}
             secureTextEntry={passwordVisibility}
             textContentType='password'
-            rightIcon={rightIcon}
             handlePasswordVisibility={handlePasswordVisibility}
           />
-          <FormButton title={"로그인"} />
           {<FormErrorMessage error={loginError} visible={true} />}
-          <AppButton
-            title='회원가입'
-            color='secondary'
-            onPress={() => navigation.navigate("Register")}
-          />
+          <View style={{display:"flex",alignItems:"center",flexDirection:"row",justifyContent:"center"}}>
+             
+              <AppButton
+                title='회원가입'
+                color='yellow'
+                onPress={() => navigation.navigate("Register")}
+              />
+              <AppButton title={"로그인"} color="purple" />
+                {/* <FormButton color="purple" title={"로그인"} /> */}
+               
+          </View>
         </Form>
-        <View style={styles.footerButtonContainer}>
+      </View>
+      </View>
+        {/* <View style={styles.footerButtonContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("ForgotPassword")}
           >
             <Text style={styles.forgotPasswordButtonText}>비밀번호찾기</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </ImageBackground>
     </View>
   )
@@ -115,7 +129,9 @@ export default function LoginScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
+    margin:0,
+    padding:0,
     // justifyContent: 'flex-end',
     // alignItems: 'center',
     // padding: 15,
@@ -124,11 +140,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 250,
     height: 250,
-  },
-  logoContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
   },
   footerButtonContainer: {
     marginVertical: 15,

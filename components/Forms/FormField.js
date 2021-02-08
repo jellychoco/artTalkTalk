@@ -3,8 +3,9 @@ import { useFormikContext } from 'formik';
 
 import AppTextInput from '../AppTextInput';
 import FormErrorMessage from './FormErrorMessage';
+import { TextInput } from 'react-native';
 
-export default function FormField({ name, width, ...otherProps }) {
+export default function FormField({ name, width,style, ...otherProps }) {
   const {
     setFieldTouched,
     setFieldValue,

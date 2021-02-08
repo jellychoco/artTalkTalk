@@ -6,5 +6,7 @@ export default {
   ghostWhite: '#f8f8ff',
   lightGrey: '#f9f9f9',
   mediumGrey: '#6e6869',
-  red: '#fc5c65'
+  red: '#fc5c65',
+  yellow:"#ffea35",
+  purple:"#ffaeff"
 };
